@@ -1,0 +1,8 @@
+#pane{
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius: 0 0 18 18;
+    -fx-background-color: #ce0d0d;
+}
+.root{
+    -fx-background-color: transparent;
+}
