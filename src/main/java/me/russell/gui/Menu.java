@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.File;
+
 
 
 public class Menu extends Application {
@@ -53,8 +53,8 @@ public class Menu extends Application {
         //Displaying the contents of the stage
         playButton.setOnMouseClicked(e -> {
             pane.getChildren().remove(playButton);
-            MenuAnimation snowFlake = new MenuAnimation(pane);
-            snowFlake.snowing.play();
+            MenuAnimation.Animation(pane);
+
 
         });
         stage.show();
