@@ -30,11 +30,11 @@ public class MenuAnimation {
         //for (int i = 0;i>20;i++) {
             timeline.getKeyFrames().addAll(
                     new KeyFrame(Duration.ZERO, // set start position at 0
-                            new KeyValue(snowFlakes.translateXProperty(), random() * 800),
-                            new KeyValue(snowFlakes.translateYProperty(), random() * 600)),
+                            new KeyValue(snowFlakes.translateXProperty(), random() * 100),
+                            new KeyValue(snowFlakes.translateYProperty(), random() * 50)),
                     new KeyFrame(new Duration(40000), // set end position at 40s
                             new KeyValue(snowFlakes.translateXProperty(), random() * 800),
-                            new KeyValue(snowFlakes.translateYProperty(), random() * 600)));
+                            new KeyValue(snowFlakes.translateYProperty(), random() * 400)));
         //}
 
         snowing = timeline;
