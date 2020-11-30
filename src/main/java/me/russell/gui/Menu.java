@@ -2,10 +2,12 @@ package me.russell.gui;
 
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -21,6 +23,10 @@ public class Menu extends Application {
         VBox pane = new VBox();
         Button playButton = new Button();
         playButton.setText("Play");
+        playButton.setId("menubutton");
+        //playButton.setMaxWidth();
+        playButton.setPrefWidth(300);
+
         //Setting title to the Stage
         stage.setTitle("Event Handlers Example");
 
@@ -38,9 +44,9 @@ public class Menu extends Application {
         stage.initStyle(StageStyle.TRANSPARENT);
         //stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
-
         //Displaying the contents of the stage
         stage.show();
+        playButton.setOnMouseClicked((event -> pane.getChildren().remove(playButton)));
     }
     public static void main(String args[]){
         launch(args);
