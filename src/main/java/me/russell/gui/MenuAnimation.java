@@ -40,7 +40,7 @@ public class MenuAnimation {
             svgPath.setOpacity(Math.random());
             snowFlakes.getChildren().add(svgPath);
         }
-        Rectangle rectangle = new Rectangle(0,450,1200,50);
+        Rectangle rectangle = new Rectangle(0,480,1200,50);
         Timeline timeline = new Timeline();
         pane.getChildren().add(snowFlakes);
         pane.getChildren().add(rectangle);
@@ -58,7 +58,7 @@ public class MenuAnimation {
             double endY = getRandomNumber(.5, 1.8) * 1500;
             double endX = getRandomNumber(-1, 1) * 1000;
             snowFlake.boundsInParentProperty().addListener((observable, oldValue, newValue)-> { ;
-                if(snowFlake.getBoundsInParent().intersects(-200,800,1200,50)){
+                if(snowFlake.getBoundsInParent().intersects(0,480,1200,50)){
                     System.out.println("collided");
                 }
                     }
