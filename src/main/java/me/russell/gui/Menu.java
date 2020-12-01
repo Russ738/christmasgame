@@ -6,6 +6,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -23,7 +25,6 @@ public class Menu extends Application {
     public void start(Stage stage) {
         VBox pane = new VBox();
         Button playButton = new Button();
-
         playButton.setText("Play");
         playButton.setId("menubutton");
         //playButton.setMaxWidth();
@@ -33,7 +34,7 @@ public class Menu extends Application {
         stage.setTitle("Event Handlers Example");
 
         //setting layout type
-
+        pane.setAlignment(Pos.CENTER);
         pane.getChildren().addAll(playButton);
         playButton.setAlignment(Pos.CENTER);
         pane.setId("pane");
@@ -54,7 +55,11 @@ public class Menu extends Application {
         //Displaying the contents of the stage
         playButton.setOnMouseClicked(e -> {
             pane.getChildren().remove(playButton);
-            MenuAnimation.Animation(pane);
+            try {
+                MenuAnimation.Animation(pane);
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
+            }
         });
         stage.show();
 
