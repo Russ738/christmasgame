@@ -33,8 +33,9 @@ public class Menu extends Application {
         stage.setTitle("Event Handlers Example");
 
         //setting layout type
-        pane.setAlignment(Pos.CENTER);
+
         pane.getChildren().addAll(playButton);
+        playButton.setAlignment(Pos.CENTER);
         pane.setId("pane");
 
         //Creating a scene object
@@ -54,8 +55,6 @@ public class Menu extends Application {
         playButton.setOnMouseClicked(e -> {
             pane.getChildren().remove(playButton);
             MenuAnimation.Animation(pane);
-
-
         });
         stage.show();
 
