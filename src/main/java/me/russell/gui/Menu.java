@@ -2,28 +2,25 @@ package me.russell.gui;
 
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
+
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
-
-
 public class Menu extends Application {
+    public static VBox pane = new VBox();
     @Override
     public void start(Stage stage) {
-        VBox pane = new VBox();
+        System.out.println(javafx.scene.text.Font.getFamilies());
         Button playButton = new Button();
         playButton.setText("Play");
         playButton.setId("menubutton");
@@ -33,7 +30,17 @@ public class Menu extends Application {
         //Setting title to the Stage
         stage.setTitle("Event Handlers Example");
 
-        //setting layout type
+        //setting the clip
+        Rectangle clip =  new Rectangle (790,490);
+        clip.setManaged(false);
+        clip.setArcWidth(50.0);
+        clip.setArcHeight(50.0);
+        clip.setLayoutX(5);
+        clip.setLayoutY(5);
+        clip.setStroke(Color.BLACK);
+        //pane.getChildren().add(clip);
+
+        pane.setClip(clip);
         pane.setAlignment(Pos.CENTER);
         pane.getChildren().addAll(playButton);
         playButton.setAlignment(Pos.CENTER);
@@ -53,18 +60,29 @@ public class Menu extends Application {
         //stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         //Displaying the contents of the stage
+        stage.show();
         playButton.setOnMouseClicked(e -> {
             pane.getChildren().remove(playButton);
-            try {
-                MenuAnimation.Animation(pane);
-            } catch (InterruptedException interruptedException) {
-                interruptedException.printStackTrace();
-            }
+                try {
+                    Game.Animation(pane);
+
+
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
+                }
+
         });
-        stage.show();
+
+
 
     }
 
+    public static void isOver(){
+        System.out.println("FIN");
+        Text text = new Text("You Lost");
+        text.setFont(Font.font("Verdana", 40));
+        pane.getChildren().add(text);
+    }
     public static void main(String args[]){
         launch(args);
     }

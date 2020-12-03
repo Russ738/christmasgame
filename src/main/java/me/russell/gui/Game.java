@@ -10,15 +10,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
 
+import java.io.FileNotFoundException;
 import java.util.Random;
 
 import static java.lang.Math.random;
 
-public class MenuAnimation {
+public class Game {
+    private static boolean end= false;
     private static Timeline timeline = new Timeline();
     private static Group snowFlakes = new Group();
     private static VBox pane;
-
+    private static int hits;
     public static void Animation(VBox snowPane) throws InterruptedException {
         pane = snowPane;
         double width = pane.getWidth();
@@ -37,6 +39,7 @@ public class MenuAnimation {
 
         });
         timeline.play();
+        return;
     }
 
 
@@ -44,7 +47,7 @@ public class MenuAnimation {
 
     private static Timeline timeLineRan() {
         for (Node snowFlake : snowFlakes.getChildren()) {
-            double startY = getRandomNumber(1, 2) * -100;
+            double startY = -50;
             double startX = random() * 800;
             double endY = 550;
             double endX = random() * 900;
@@ -60,11 +63,23 @@ public class MenuAnimation {
             });
             snowFlake.setPickOnBounds(true);
             snowFlake.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
-                if (snowFlake.getBoundsInParent().intersects(0, 480, 1200, 50)) {
-
+                    if (snowFlake.getBoundsInParent().intersects(0, 480, 1200, 2) && snowFlake.isVisible()) {
+                        snowFlake.setVisible(false);
+                        try {
+                            if(hits<=20){
+                                hits++;
+                                Snow.Animation(pane);
+                            }
+                            else{
+                                timeline.stop();
+                                Menu.isOver();
+                                return;
+                            }
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
                 }
-            }
-            );
+            });
         }
             return timeline;
 
@@ -84,7 +99,6 @@ public class MenuAnimation {
             }
             return snowFlakes;
         }
-
 
         private static double getRandomNumber ( double min, double max){
             Random r = new Random();
