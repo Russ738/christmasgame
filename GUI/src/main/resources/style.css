@@ -1,0 +1,24 @@
+#pane{
+    -fx-background-radius: 30 30 30 30;
+ //   -fx-border-radius: 18 18 18 18;
+    -fx-background-color: #162a72;
+    -fx-font-size: 40;
+}
+
+.root{
+    -fx-background-color: transparent;
+}
+.button
+ {
+    -fx-background-color: #ff7878;
+    -fx-background-radius: 50 50 50 50;
+ }
+ .button:hover
+ {
+
+   -fx-background-color: #ce0d0d;
+ }
+ .button:pressed
+ {
+   -fx-background-color: #ffffff;
+ }
